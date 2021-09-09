@@ -1,0 +1,95 @@
+{
+  "name": "muon-task",
+  "version": "1.0.0",
+  "description": "muon-task",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env DEV_ENV=true nodemon --inspect ./local-dev.js",
+    "start": "node ./local-dev.js",
+    "prod": "node ./server.js",
+    "test": "jest --watchAll",
+    "testMocha": "mocha --recursive --exit",
+    "testci": "jest",
+    "lint": "eslint '**/*.{js,json}' --fix",
+    "format": "prettier-eslint '**/*.{js,json}' --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "Jitendra choudhary",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.10.0",
+    "@mongoosejs/double": "^0.2.0",
+    "aws-serverless-express": "^3.3.8",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "hpp": "^0.2.3",
+    "json2csv": "^5.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "mongoosastic": "^4.6.0",
+    "mongoose": "^5.9.28",
+    "mongoose-autopopulate": "^0.12.3",
+    "mongoose-diff-history": "^2.1.0",
+    "mongoose-fuzzy-searching": "^2.0.2",
+    "mongoose-to-csv": "^0.1.1",
+    "mongoose-update-versioning": "^0.1.1",
+    "multer": "^1.4.2",
+    "nirmitee-express-correlation-id-helper": "^1.0.2",
+    "nirmitee-logger": "0.0.1",
+    "node-geocoder": "^3.27.0",
+    "number-generator": "^4.0.5",
+    "order-id": "^2.1.0",
+    "uuidv4": "^6.2.5",
+    "voca": "^1.4.0",
+    "witch": "^1.0.3",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.799.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-json": "^2.1.1",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.2.1",
+    "mocha": "^8.2.1",
+    "node-lambda": "^0.13.0",
+    "node-mocks-http": "^1.9.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^1.19.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "serverless-domain-manager": "^4.1.1",
+    "serverless-offline": "^6.4.0",
+    "serverless-plugin-warmup": "^4.9.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": [
+      "eslint --fix",
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {}
+  }
+}

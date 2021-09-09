@@ -1,0 +1,52 @@
+service: muon-task
+package:
+  excludeDevDependencies: true
+custom:
+  stages:
+    - dev
+    - prod
+  MONGO_USERNAME:
+    dev: nirmitee_db_user
+    prod: nirmitee_db_user
+  MONGO_PASSWORD:
+    dev: Y87p4C4DpDpE8AC9
+    prod: Y87p4C4DpDpE8AC9
+  MONGO_HOST:
+    dev: nirmiteecluster.8t6pe.mongodb.net
+    prod: nirmiteecluster.8t6pe.mongodb.net
+  MONGO_DB:
+    dev: bestosys_poc
+    prod: bestosys_poc
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-south-1
+  profile: fasalsetu
+  stage: ${opt:stage,'dev'}
+  timeout: 30
+  environment:
+    MONGO_USERNAME: ${self:custom.MONGO_USERNAME.${self:provider.stage}}
+    MONGO_PASSWORD: ${self:custom.MONGO_PASSWORD.${self:provider.stage}}
+    MONGO_HOST: ${self:custom.MONGO_HOST.${self:provider.stage}}
+    MONGO_DB: ${self:custom.MONGO_DB.${self:provider.stage}}
+  iamRoleStatement:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup,
+        - logs:CreateLogStream,
+        - logs:PutLogEvents,
+        - logs:DescribeLogStreams,
+        - lambda:InvokeFunction
+      Resource: '*'
+functions:
+  app:
+    handler: lambda.handler
+    events:
+      - http: ANY /
+        cors: true
+      - http: ANY {proxy+}
+        cors: true
+      - https: ANY /
+        cors: true
+      - https: ANY {proxy+}
+        cors: true
