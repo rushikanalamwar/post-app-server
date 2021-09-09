@@ -12,6 +12,9 @@ const postSchema = new Schema(
     postDescription: {
       type: String,
     },
+    comment:{
+      type: mongoose.Schema.Types.ObjectId , ref: 'Comment', autopopulate: true
+    }
   },
   {
     toJSON: { virtuals: true },

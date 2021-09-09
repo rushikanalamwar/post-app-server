@@ -12,7 +12,7 @@ const commentSchema = new Schema(
     comments: [
       {
         type: Object,
-        ref: this,
+        ref: this
       },
     ],
   },
