@@ -52,13 +52,13 @@ const deleteACommentModel = asyncHandler(async (req, res, next) => {
         );
     }
 
-    await CommentModel.deleteById(id);
+    await CommentModel.deleteOne({_id:id});
     comment = await CommentModel.findOne({ _id: id });
 
     logger.info({
         message: `CommentModel with ${id} deleted`,
     });
-    res.json(comment);
+    res.json({msg: 'comment deleted'});
 });
 
 const deleteAllCommentModel = asyncHandler(async (req, res, next) => {

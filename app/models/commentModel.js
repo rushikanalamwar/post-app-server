@@ -11,8 +11,9 @@ const commentSchema = new Schema(
 
     comments: [
       {
-        type: Object,
-        ref: this
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment',
+        autopopulate: true
       },
     ],
   },
